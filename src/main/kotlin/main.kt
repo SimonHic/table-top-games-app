@@ -8,6 +8,7 @@ import utils.ScannerInput.readNextInt
 import utils.ScannerInput.readNextLine
 import java.io.File
 import kotlin.system.exitProcess
+import org.fusesource.jansi.Ansi.ansi
 
 /**Uncomment and Comment to alternate between the two*/
 // private val gameAPI = GameAPI(XMLSerializer(File("games.xml")))
@@ -37,57 +38,73 @@ fun runMenu() {
     } while (true)
 }
 
-fun mainMenu() = readNextInt(
+fun mainMenu(): Int {
+    return readNextInt(
+        ansi().render(
     """ 
-         > -----------------------------------------------------  
-         > |              Table-Top-Games App                  |
-         > -----------------------------------------------------  
+         > @|cyan ------------------------------------------------------|@  
+         > |@|white,bold              Table-Top-Games App|@                   |
+         > @|cyan ------------------------------------------------------|@  
          > | Game MENU                                         |
-         > |   1) Add a game                                   |
-         > |   2) List games                                   |
-         > |   3) Update a game                                |
-         > |   4) Delete a game                                |
-         > |   5) Save a game for later                        |
-         > -----------------------------------------------------  
+         > @|green | 1) Add a game $plusSign                                |@  |
+         > @|green | 2) List games $listSymbol                                |@  |
+         > @|yellow |  3) Update a game $pencil                            |@  |
+         > @|yellow |  4) Delete a game $trashCan                            |@  |
+         > @|green | 5) Save a game for later $floppyDisk                     |@  |
+         > @|cyan -----------------------------------------------------|@  
          > | Play MENU                                         | 
-         > |   6) Add play to a game                           |
-         > |   7) Update play contents on a game               |
-         > |   8) Delete play from a game                      |
-         > |   9) Mark play as played/to-be played             | 
-         > -----------------------------------------------------  
+         > @|green | 6) Add play to a game $plusSign                        |@  |
+         > @|yellow | 7) Update play contents on a game $pencil            |@  |
+         > @|yellow | 8) Delete play from a game $trashCan                   |@  |
+         > @|blue | 9) Mark play as played/to-be played $pencil          |@  | 
+         > @|cyan -----------------------------------------------------|@  
          > | REPORT MENU FOR GAMES                             | 
-         > |   10) Search for all games (by game name)         |
+         > @|blue |   10) Search for games $magnifyingGlass (by game name)       |@   |
          > |   11) .....                                       |
          > |   12) .....                                       |
          > |   13) .....                                       |
          > |   14) .....                                       |
-         > -----------------------------------------------------  
+         > @|green -----------------------------------------------------|@  
          > | REPORT MENU FOR PLAYS                             |                                
-         > |   15) Search for all plays (by play description)  |
-         > |   16) List TO-BE played Plays                     |
+         > @|blue |   15) Search for plays $magnifyingGlass (by play description)  |@ |
+         > @|blue |   16) List TO-BE played Plays $listSymbol                 |@ |
          > |   17) .....                                       |
          > |   18) .....                                       |
-         > |   19) Save                                        |
-         > |   20) Load                                        |
-         > -----------------------------------------------------  
-         > |   0) Exit                                         |
-         > -----------------------------------------------------  
-         > ==>> """.trimMargin(">")
+         > @|cyan -----------------------------------------------------|@ 
+         > @|magenta |   19) Save $floppyDisk                                   |@  |
+         > @|magenta |   20) Load                                      |@  |
+         > @|cyan -----------------------------------------------------|@  
+         > @|red |  0) Exit                                        |@  |
+         > @|cyan -----------------------------------------------------|@  
+         > ==>> """.trimMargin(">")).toString()
 )
+}
 
 // ------------------------------------
 // Game MENU
 // ------------------------------------
+
+/** Assigned unicode emojis to variables for easy use*/
+const val starSymbol = "\u2B50" // Unicode for star emoji assigned as a variable
+const val magnifyingGlass = "\uD83D\uDD0D"
+const val floppyDisk = "\uD83D\uDCBE"
+const val redX = "\u274C"
+const val waveSymbol = "\uD83D\uDC4B"
+const val pencil = "\u270F"
+const val trashCan = "\uD83D\uDDD1️\uFE0F"
+const val plusSign = "\u2795"
+const val listSymbol = "\uD83D\uDCD3"
+
 fun addGame() {
     val gameTitle = readNextLine("Enter a title for the game: ")
-    val gameRating = readNextInt("Enter a star rating (1-low, 2, 3, 4, 5-high): ")
+    val gameRating = readNextInt("Enter a star rating (1 $starSymbol, 2 $starSymbol$starSymbol, 3 $starSymbol$starSymbol$starSymbol, 4 $starSymbol$starSymbol$starSymbol$starSymbol, 5 $starSymbol$starSymbol$starSymbol$starSymbol$starSymbol): ")
     val gameBrand = readNextLine("Enter a brand for the game: ")
     val isAdded = gameAPI.add(Game(gameName = gameTitle, gameRating = gameRating, gameBrand = gameBrand))
 
     if (isAdded) {
         println("Added Successfully")
     } else {
-        println("Add Failed")
+        println("Add Failed $redX")
     }
 }
 
@@ -98,7 +115,7 @@ fun listGames() {
                   > -----------------------------------
                   > |   1) View ALL games              |
                   > |   2) View RUNNING games          |
-                  > |   3) View SAVED FOR LATER games  |
+                  > |   3) View SAVED $floppyDisk FOR LATER games  |
                   > --------------------------------
          > ==>> """.trimMargin(">")
         )
@@ -110,7 +127,7 @@ fun listGames() {
             else -> println("Invalid option entered: $option")
         }
     } else {
-        println("Option Invalid - No games stored in the system")
+        println("Option Invalid - No games stored in the system $redX$floppyDisk")
     }
 }
 
@@ -125,7 +142,7 @@ fun updateGame() {
         val id = readNextInt("Enter the id of the game to update it: ")
         if (gameAPI.findGame(id) != null) {
             val gameTitle = readNextLine("Enter the name for the game: ")
-            val gameRating = readNextInt("Enter the rating (1-low, 2, 3, 4, 5-high): ")
+            val gameRating = readNextInt("Enter the rating (1 $starSymbol, 2 $starSymbol$starSymbol, 3 $starSymbol$starSymbol$starSymbol, 4 $starSymbol$starSymbol$starSymbol$starSymbol, 5 $starSymbol$starSymbol$starSymbol$starSymbol$starSymbol): ")
             val gameBrand = readNextLine("Enter the Brand name of the game: ")
 
             // pass the index of the game and the new game details to GameAPI for updating and check for success.
@@ -135,7 +152,7 @@ fun updateGame() {
                 println("Update Failed")
             }
         } else {
-            println("There are no games for this index number")
+            println("There are no games for this index number $redX")
         }
     }
 }
@@ -150,7 +167,7 @@ fun deleteGame() {
         if (gameToDelete) {
             println("Delete Successful!")
         } else {
-            println("Delete wasn't Successful!!!")
+            println("Delete wasn't Successful!!! $redX")
         }
     }
 }
@@ -164,7 +181,7 @@ fun saveGameForLater() {
         if (gameAPI.saveForLaterGame(id)) {
             println("Archive Successful!")
         } else {
-            println("Archive wasn't Successful!!!")
+            println("Archive wasn't Successful!!! $redX")
         }
     }
 }
@@ -178,7 +195,7 @@ private fun addPlayToGame() {
     if (game != null) {
         if (game.addPlay(Play(playContents = readNextLine("\t Play Contents: "))))
             println("Add Successful!")
-        else println("Add wasn't Successful!!!")
+        else println("Add wasn't Successful!!! $redX")
     }
 }
 
@@ -188,10 +205,10 @@ private fun addPlayToGame() {
 // GAME REPORTS MENU
 // ------------------------------------
 fun searchGames() {
-    val findName = readNextLine("Enter the description to search by: ")
+    val findName = readNextLine("Enter the description to search by $magnifyingGlass: ")
     val searchResults = gameAPI.findGameByName(findName)
     if (searchResults.isEmpty()) {
-        println("No games were found")
+        println("No games were found $redX$magnifyingGlass")
     } else {
         println(searchResults)
     }
@@ -206,10 +223,10 @@ fun updatePlayContentsInGame() {
             if (game.update(play.playId, Play(playContents = newContents))) {
                 println("IPlay contents successfully updated!")
             } else {
-                println("Play contents weren't updated!!!")
+                println("Play contents weren't updated!!! $redX")
             }
         } else {
-            println("Invalid Play Id")
+            println("Invalid Play Id $redX")
         }
     }
 }
@@ -219,7 +236,7 @@ private fun askUserToChoosePlay(game: Game): Play? {
         print(game.listPlays())
         game.findOne(readNextInt("\nEnter the id of the play: "))
     } else {
-        println("No plays for chosen game")
+        println("No plays for chosen game $redX")
         null
     }
 }
@@ -233,7 +250,7 @@ fun deleteAPlay() {
             if (isDeleted) {
                 println("Delete Successful!")
             } else {
-                println("Delete wasn't Successful!!!")
+                println("Delete wasn't Successful!!! $redX")
             }
         }
     }
@@ -262,7 +279,7 @@ fun searchPlays() {
     val searchContents = readNextLine("Enter the play contents to search by: ")
     val searchResults = gameAPI.findPlayByDesc(searchContents)
     if (searchResults.isEmpty()) {
-        println("No plays found")
+        println("No plays found $redX$magnifyingGlass")
     } else {
         println(searchResults)
     }
@@ -275,7 +292,7 @@ fun save() {
     try {
         gameAPI.store()
     } catch (e: Exception) {
-        System.err.println("Error writing to file: $e")
+        System.err.println("Error writing to file $redX: $e")
     }
 }
 
@@ -283,7 +300,7 @@ fun load() = try {
     gameAPI.load()
     println("File Extraction Successful! Games and Plays have been added to the system!")
 } catch (e: Exception) {
-    System.err.println("Error reading from file: $e")
+    System.err.println("Error reading from file $redX: $e")
 }
 
 fun listToBePlayedPlays() {
@@ -303,7 +320,7 @@ fun listToBePlayedPlays() {
 // Exit App
 // ------------------------------------
 fun exitApp() {
-    println("Exiting...bye")
+    println("Goodbye! $waveSymbol")
     exitProcess(0)
 }
 
@@ -322,7 +339,7 @@ private fun askUserToChooseRunningGame(): Game? {
                 return game // chosen game is running
             }
         } else {
-            println("Game id is not valid")
+            println("Game id is not valid $redX")
         }
     }
     return null // selected game is not running
