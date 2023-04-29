@@ -279,12 +279,11 @@ fun save() {
     }
 }
 
-fun load() {
-    try {
-        noteAPI.load()
-    } catch (e: Exception) {
-        System.err.println("Error reading from file: $e")
-    }
+fun load() = try {
+    noteAPI.load()
+    println("File Extraction Successful! Games and Plays have been added to the system!")
+} catch (e: Exception) {
+    System.err.println("Error reading from file: $e")
 }
 
 fun listToDoItems() {
