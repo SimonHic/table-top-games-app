@@ -1,6 +1,6 @@
-import controllers.NoteAPI
-import models.Item
-import models.Note
+import controllers.GameAPI
+import models.Play
+import models.Game
 import persistence.JSONSerializer
 // import persistence.XMLSerializer
 import utils.ScannerInput.readNextChar
@@ -10,25 +10,25 @@ import java.io.File
 import kotlin.system.exitProcess
 
 /**Uncomment and Comment to alternate between the two*/
-// private val noteAPI = NoteAPI(XMLSerializer(File("notes.xml")))
-private val noteAPI = NoteAPI(JSONSerializer(File("notes.json")))
+// private val gameAPI = GameAPI(XMLSerializer(File("games.xml")))
+private val gameAPI = GameAPI(JSONSerializer(File("games.json")))
 fun main() = runMenu()
 
 fun runMenu() {
     do {
         when (val option = mainMenu()) {
-            1 -> addNote()
-            2 -> listNotes()
-            3 -> updateNote()
-            4 -> deleteNote()
-            5 -> archiveNote()
-            6 -> addItemToNote()
-            7 -> updateItemContentsInNote()
-            8 -> deleteAnItem()
-            9 -> markItemStatus()
-            10 -> searchNotes()
-            15 -> searchItems()
-            16 -> listToDoItems()
+            1 -> addGame()
+            2 -> listGames()
+            3 -> updateGame()
+            4 -> deleteGame()
+            5 -> saveGameForLater()
+            6 -> addPlayToGame()
+            7 -> updatePlayContentsInGame()
+            8 -> deleteAPlay()
+            9 -> markPlayDesc()
+            10 -> searchGames()
+            15 -> searchPlays()
+            16 -> listToBePlayedPlays()
             19 -> save()
             20 -> load()
             0 -> exitApp()
@@ -40,31 +40,31 @@ fun runMenu() {
 fun mainMenu() = readNextInt(
     """ 
          > -----------------------------------------------------  
-         > |                  NOTE KEEPER APP                  |
+         > |              Table-Top-Games App                  |
          > -----------------------------------------------------  
-         > | NOTE MENU                                         |
-         > |   1) Add a note                                   |
-         > |   2) List notes                                   |
-         > |   3) Update a note                                |
-         > |   4) Delete a note                                |
-         > |   5) Archive a note                               |
+         > | Game MENU                                         |
+         > |   1) Add a game                                   |
+         > |   2) List games                                   |
+         > |   3) Update a game                                |
+         > |   4) Delete a game                                |
+         > |   5) Save a game for later                        |
          > -----------------------------------------------------  
-         > | ITEM MENU                                         | 
-         > |   6) Add item to a note                           |
-         > |   7) Update item contents on a note               |
-         > |   8) Delete item from a note                      |
-         > |   9) Mark item as complete/todo                   | 
+         > | Play MENU                                         | 
+         > |   6) Add play to a game                           |
+         > |   7) Update play contents on a game               |
+         > |   8) Delete play from a game                      |
+         > |   9) Mark play as played/to-be played             | 
          > -----------------------------------------------------  
-         > | REPORT MENU FOR NOTES                             | 
-         > |   10) Search for all notes (by note title)        |
+         > | REPORT MENU FOR GAMES                             | 
+         > |   10) Search for all games (by game name)         |
          > |   11) .....                                       |
          > |   12) .....                                       |
          > |   13) .....                                       |
          > |   14) .....                                       |
          > -----------------------------------------------------  
-         > | REPORT MENU FOR ITEMS                             |                                
-         > |   15) Search for all items (by item description)  |
-         > |   16) List TODO Items                             |
+         > | REPORT MENU FOR PLAYS                             |                                
+         > |   15) Search for all plays (by play description)  |
+         > |   16) List TO-BE played Plays                     |
          > |   17) .....                                       |
          > |   18) .....                                       |
          > |   19) Save                                        |
@@ -76,13 +76,13 @@ fun mainMenu() = readNextInt(
 )
 
 // ------------------------------------
-// NOTE MENU
+// Game MENU
 // ------------------------------------
-fun addNote() {
-    val noteTitle = readNextLine("Enter a title for the note: ")
-    val notePriority = readNextInt("Enter a priority (1-low, 2, 3, 4, 5-high): ")
-    val noteCategory = readNextLine("Enter a category for the note: ")
-    val isAdded = noteAPI.add(Note(noteTitle = noteTitle, notePriority = notePriority, noteCategory = noteCategory))
+fun addGame() {
+    val gameTitle = readNextLine("Enter a title for the game: ")
+    val gameRating = readNextInt("Enter a star rating (1-low, 2, 3, 4, 5-high): ")
+    val gameBrand = readNextLine("Enter a brand for the game: ")
+    val isAdded = gameAPI.add(Game(gameName = gameTitle, gameRating = gameRating, gameBrand = gameBrand))
 
     if (isAdded) {
         println("Added Successfully")
@@ -91,178 +91,178 @@ fun addNote() {
     }
 }
 
-fun listNotes() {
-    if (noteAPI.numberOfNotes() > 0) {
+fun listGames() {
+    if (gameAPI.amountOfGames() > 0) {
         val option = readNextInt(
             """
-                  > --------------------------------
-                  > |   1) View ALL notes          |
-                  > |   2) View ACTIVE notes       |
-                  > |   3) View ARCHIVED notes     |
+                  > -----------------------------------
+                  > |   1) View ALL games              |
+                  > |   2) View RUNNING games          |
+                  > |   3) View SAVED FOR LATER games  |
                   > --------------------------------
          > ==>> """.trimMargin(">")
         )
 
         when (option) {
-            1 -> listAllNotes()
-            2 -> listActiveNotes()
-            3 -> listArchivedNotes()
+            1 -> listAllGames()
+            2 -> listRunningGames()
+            3 -> listSavedForLaterGames()
             else -> println("Invalid option entered: $option")
         }
     } else {
-        println("Option Invalid - No notes stored")
+        println("Option Invalid - No games stored in the system")
     }
 }
 
-fun listAllNotes() = println(noteAPI.listAllNotes())
-fun listActiveNotes() = println(noteAPI.listActiveNotes())
-fun listArchivedNotes() = println(noteAPI.listArchivedNotes())
+fun listAllGames() = println(gameAPI.listAllGames())
+fun listRunningGames() = println(gameAPI.listRunningGames())
+fun listSavedForLaterGames() = println(gameAPI.listSavedForLaterGames())
 
-fun updateNote() {
-    listNotes()
-    if (noteAPI.numberOfNotes() > 0) {
-        // only ask the user to choose the note if notes exist
-        val id = readNextInt("Enter the id of the note to update: ")
-        if (noteAPI.findNote(id) != null) {
-            val noteTitle = readNextLine("Enter a title for the note: ")
-            val notePriority = readNextInt("Enter a priority (1-low, 2, 3, 4, 5-high): ")
-            val noteCategory = readNextLine("Enter a category for the note: ")
+fun updateGame() {
+    listGames()
+    if (gameAPI.amountOfGames() > 0) {
+        // only ask the user to choose the game if games exist
+        val id = readNextInt("Enter the id of the game to update it: ")
+        if (gameAPI.findGame(id) != null) {
+            val gameTitle = readNextLine("Enter the name for the game: ")
+            val gameRating = readNextInt("Enter the rating (1-low, 2, 3, 4, 5-high): ")
+            val gameBrand = readNextLine("Enter the Brand name of the game: ")
 
-            // pass the index of the note and the new note details to NoteAPI for updating and check for success.
-            if (noteAPI.update(id, Note(0, noteTitle, notePriority, noteCategory, false))) {
+            // pass the index of the game and the new game details to GameAPI for updating and check for success.
+            if (gameAPI.update(id, Game(0, gameTitle, gameRating, gameBrand, false))) {
                 println("Update Successful")
             } else {
                 println("Update Failed")
             }
         } else {
-            println("There are no notes for this index number")
+            println("There are no games for this index number")
         }
     }
 }
 
-fun deleteNote() {
-    listNotes()
-    if (noteAPI.numberOfNotes() > 0) {
-        // only ask the user to choose the note to delete if notes exist
-        val id = readNextInt("Enter the id of the note to delete: ")
-        // pass the index of the note to NoteAPI for deleting and check for success.
-        val noteToDelete = noteAPI.delete(id)
-        if (noteToDelete) {
+fun deleteGame() {
+    listGames()
+    if (gameAPI.amountOfGames() > 0) {
+        // only ask the user to choose the game to delete if games exist
+        val id = readNextInt("Enter the id of the game to delete: ")
+        // pass the index of the game to GameAPI for deleting and check for success.
+        val gameToDelete = gameAPI.delete(id)
+        if (gameToDelete) {
             println("Delete Successful!")
         } else {
-            println("Delete NOT Successful")
+            println("Delete wasn't Successful!!!")
         }
     }
 }
 
-fun archiveNote() {
-    listActiveNotes()
-    if (noteAPI.numberOfActiveNotes() > 0) {
-        // only ask the user to choose the note to archive if active notes exist
-        val id = readNextInt("Enter the id of the note to archive: ")
-        // pass the index of the note to NoteAPI for archiving and check for success.
-        if (noteAPI.archiveNote(id)) {
+fun saveGameForLater() {
+    listRunningGames()
+    if (gameAPI.amountOfRunningGames() > 0) {
+        // only ask the user to choose the game to save for later if running games exist
+        val id = readNextInt("Enter the id of the game to save for later: ")
+        // pass the index of the game to GameAPI for archiving and check for success.
+        if (gameAPI.saveForLaterGame(id)) {
             println("Archive Successful!")
         } else {
-            println("Archive NOT Successful")
+            println("Archive wasn't Successful!!!")
         }
     }
 }
 
 // -------------------------------------------
-// ITEM MENU (only available for active notes)
+// Play MENU (only available for running games)
 // -------------------------------------------
 
-private fun addItemToNote() {
-    val note: Note? = askUserToChooseActiveNote()
-    if (note != null) {
-        if (note.addItem(Item(itemContents = readNextLine("\t Item Contents: "))))
+private fun addPlayToGame() {
+    val game: Game? = askUserToChooseRunningGame()
+    if (game != null) {
+        if (game.addPlay(Play(playContents = readNextLine("\t Play Contents: "))))
             println("Add Successful!")
-        else println("Add NOT Successful")
+        else println("Add wasn't Successful!!!")
     }
 }
 
 //
 
 // ------------------------------------
-// NOTE REPORTS MENU
+// GAME REPORTS MENU
 // ------------------------------------
-fun searchNotes() {
-    val searchTitle = readNextLine("Enter the description to search by: ")
-    val searchResults = noteAPI.searchNotesByTitle(searchTitle)
+fun searchGames() {
+    val findName = readNextLine("Enter the description to search by: ")
+    val searchResults = gameAPI.findGameByName(findName)
     if (searchResults.isEmpty()) {
-        println("No notes found")
+        println("No games were found")
     } else {
         println(searchResults)
     }
 }
 
-fun updateItemContentsInNote() {
-    val note: Note? = askUserToChooseActiveNote()
-    if (note != null) {
-        val item: Item? = askUserToChooseItem(note)
-        if (item != null) {
+fun updatePlayContentsInGame() {
+    val game: Game? = askUserToChooseRunningGame()
+    if (game != null) {
+        val play: Play? = askUserToChoosePlay(game)
+        if (play != null) {
             val newContents = readNextLine("Enter new contents: ")
-            if (note.update(item.itemId, Item(itemContents = newContents))) {
-                println("Item contents updated")
+            if (game.update(play.playId, Play(playContents = newContents))) {
+                println("IPlay contents successfully updated!")
             } else {
-                println("Item contents NOT updated")
+                println("Play contents weren't updated!!!")
             }
         } else {
-            println("Invalid Item Id")
+            println("Invalid Play Id")
         }
     }
 }
 
-private fun askUserToChooseItem(note: Note): Item? {
-    return if (note.numberOfItems() > 0) {
-        print(note.listItems())
-        note.findOne(readNextInt("\nEnter the id of the item: "))
+private fun askUserToChoosePlay(game: Game): Play? {
+    return if (game.amountOfPlays() > 0) {
+        print(game.listPlays())
+        game.findOne(readNextInt("\nEnter the id of the play: "))
     } else {
-        println("No items for chosen note")
+        println("No plays for chosen game")
         null
     }
 }
 
-fun deleteAnItem() {
-    val note: Note? = askUserToChooseActiveNote()
-    if (note != null) {
-        val item: Item? = askUserToChooseItem(note)
-        if (item != null) {
-            val isDeleted = note.delete(item.itemId)
+fun deleteAPlay() {
+    val game: Game? = askUserToChooseRunningGame()
+    if (game != null) {
+        val play: Play? = askUserToChoosePlay(game)
+        if (play != null) {
+            val isDeleted = game.delete(play.playId)
             if (isDeleted) {
                 println("Delete Successful!")
             } else {
-                println("Delete NOT Successful")
+                println("Delete wasn't Successful!!!")
             }
         }
     }
 }
 
-fun markItemStatus() {
-    val note: Note? = askUserToChooseActiveNote()
-    if (note != null) {
-        val item: Item? = askUserToChooseItem(note)
-        if (item != null) {
+fun markPlayDesc() {
+    val game: Game? = askUserToChooseRunningGame()
+    if (game != null) {
+        val play: Play? = askUserToChoosePlay(game)
+        if (play != null) {
             val changeStatus: Char
-            if (item.isItemComplete) {
-                changeStatus = readNextChar("The item is currently complete...do you want to mark it as TODO?")
+            if (play.isPlayComplete) {
+                changeStatus = readNextChar("The play is currently complete...do you want to mark it as TO-Be played?")
                 if ((changeStatus == 'Y') || (changeStatus == 'y'))
-                    item.isItemComplete = false
+                    play.isPlayComplete = false
             } else {
-                changeStatus = readNextChar("The item is currently TODO...do you want to mark it as Complete?")
+                changeStatus = readNextChar("The play is currently TO-Be Played...do you want to mark it as Complete?")
                 if ((changeStatus == 'Y') || (changeStatus == 'y'))
-                    item.isItemComplete = true
+                    play.isPlayComplete = true
             }
         }
     }
 }
 
-fun searchItems() {
-    val searchContents = readNextLine("Enter the item contents to search by: ")
-    val searchResults = noteAPI.searchItemByContents(searchContents)
+fun searchPlays() {
+    val searchContents = readNextLine("Enter the play contents to search by: ")
+    val searchResults = gameAPI.findPlayByDesc(searchContents)
     if (searchResults.isEmpty()) {
-        println("No items found")
+        println("No plays found")
     } else {
         println(searchResults)
     }
@@ -273,28 +273,28 @@ fun searchItems() {
 // ------------------------------------
 fun save() {
     try {
-        noteAPI.store()
+        gameAPI.store()
     } catch (e: Exception) {
         System.err.println("Error writing to file: $e")
     }
 }
 
 fun load() = try {
-    noteAPI.load()
+    gameAPI.load()
     println("File Extraction Successful! Games and Plays have been added to the system!")
 } catch (e: Exception) {
     System.err.println("Error reading from file: $e")
 }
 
-fun listToDoItems() {
-    if (noteAPI.numberOfToDoItems() > 0) {
-        println("Total TODO items: ${noteAPI.numberOfToDoItems()}")
+fun listToBePlayedPlays() {
+    if (gameAPI.amountOfToBePlayedPlays() > 0) {
+        println("Total To-Be played plays: ${gameAPI.amountOfToBePlayedPlays()}")
     }
-    println(noteAPI.listTodoItems())
+    println(gameAPI.listToBePlayedPlays())
 }
 
 // ------------------------------------
-// ITEM REPORTS MENU
+// PLAY REPORTS MENU
 // ------------------------------------
 
 //
@@ -311,19 +311,19 @@ fun exitApp() {
 // HELPER FUNCTIONS
 // ------------------------------------
 
-private fun askUserToChooseActiveNote(): Note? {
-    listActiveNotes()
-    if (noteAPI.numberOfActiveNotes() > 0) {
-        val note = noteAPI.findNote(readNextInt("\nEnter the id of the note: "))
-        if (note != null) {
-            if (note.isNoteArchived) {
-                println("Note is NOT Active, it is Archived")
+private fun askUserToChooseRunningGame(): Game? {
+    listRunningGames()
+    if (gameAPI.amountOfRunningGames() > 0) {
+        val game = gameAPI.findGame(readNextInt("\nEnter the id of the game: "))
+        if (game != null) {
+            if (game.isGameSavedForLater) {
+                println("Game is NOT Running, it is Saved For Later")
             } else {
-                return note // chosen note is active
+                return game // chosen game is running
             }
         } else {
-            println("Note id is not valid")
+            println("Game id is not valid")
         }
     }
-    return null // selected note is not active
+    return null // selected game is not running
 }

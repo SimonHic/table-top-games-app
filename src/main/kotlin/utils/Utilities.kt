@@ -1,7 +1,7 @@
 package utils
 
-import models.Item
-import models.Note
+import models.Play
+import models.Game
 
 object Utilities {
 
@@ -9,16 +9,16 @@ object Utilities {
     //      name; we don't have to create an object of Utilities to use them.
 
     @JvmStatic
-    fun formatListString(notes: List<Note>): String {
+    fun formatListString(games: List<Game>): String {
         val sb = StringBuilder()
-        for (note in notes) {
-            sb.append(note.toString()).append("\n")
+        for (game in games) {
+            sb.append(game.toString()).append("\n")
         }
         return sb.toString().trim()
     }
 
     @JvmStatic
-    fun formatSetString(itemsToFormat: Set<Item>): String =
-        itemsToFormat
-            .joinToString(separator = "\n") { item -> "\t$item" }
+    fun formatSetString(playsToFormat: Set<Play>): String =
+        playsToFormat
+            .joinToString(separator = "\n") { play -> "\t$play" }
 }
