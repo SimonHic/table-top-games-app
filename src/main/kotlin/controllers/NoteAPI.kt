@@ -4,7 +4,7 @@ import models.Note
 import utils.Utilities.formatListString
 import java.util.ArrayList
 
-class NoteAPI() {
+class NoteAPI {
 
     private var notes = ArrayList<Note>()
 
@@ -42,9 +42,9 @@ class NoteAPI() {
 
     fun archiveNote(id: Int): Boolean {
         val foundNote = findNote(id)
-        if (( foundNote != null) && (!foundNote.isNoteArchived)
-        //  && ( foundNote.checkNoteCompletionStatus())
-        ){
+        if ((foundNote != null) && (!foundNote.isNoteArchived)
+            //  && ( foundNote.checkNoteCompletionStatus())
+        ) {
             foundNote.isNoteArchived = true
             return true
         }
@@ -70,13 +70,13 @@ class NoteAPI() {
     //  COUNTING METHODS FOR NOTE ArrayList
     // ----------------------------------------------
     fun numberOfNotes() = notes.size
-    fun numberOfArchivedNotes(): Int = notes.count { note: Note -> note.isNoteArchived }
+    private fun numberOfArchivedNotes(): Int = notes.count { note: Note -> note.isNoteArchived }
     fun numberOfActiveNotes(): Int = notes.count { note: Note -> !note.isNoteArchived }
 
     // ----------------------------------------------
     //  SEARCHING METHODS
     // ---------------------------------------------
-    fun findNote(noteId : Int) =  notes.find{ note -> note.noteId == noteId }
+    fun findNote(noteId: Int) = notes.find { note -> note.noteId == noteId }
 
     fun searchNotesByTitle(searchString: String) =
         formatListString(notes.filter { note -> note.noteTitle.contains(searchString, ignoreCase = true) })
@@ -128,5 +128,4 @@ class NoteAPI() {
             else listOfNotes
         }
     }
-
 }

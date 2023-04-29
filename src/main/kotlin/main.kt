@@ -68,9 +68,9 @@ fun mainMenu() = readNextInt(
          > ==>> """.trimMargin(">")
 )
 
-//------------------------------------
-//NOTE MENU
-//------------------------------------
+// ------------------------------------
+// NOTE MENU
+// ------------------------------------
 fun addNote() {
     val noteTitle = readNextLine("Enter a title for the note: ")
     val notePriority = readNextInt("Enter a priority (1-low, 2, 3, 4, 5-high): ")
@@ -122,7 +122,7 @@ fun updateNote() {
             val noteCategory = readNextLine("Enter a category for the note: ")
 
             // pass the index of the note and the new note details to NoteAPI for updating and check for success.
-            if (noteAPI.update(id, Note(0, noteTitle, notePriority, noteCategory, false))){
+            if (noteAPI.update(id, Note(0, noteTitle, notePriority, noteCategory, false))) {
                 println("Update Successful")
             } else {
                 println("Update Failed")
@@ -162,9 +162,9 @@ fun archiveNote() {
     }
 }
 
-//-------------------------------------------
-//ITEM MENU (only available for active notes)
-//-------------------------------------------
+// -------------------------------------------
+// ITEM MENU (only available for active notes)
+// -------------------------------------------
 
 private fun addItemToNote() {
     val note: Note? = askUserToChooseActiveNote()
@@ -175,11 +175,11 @@ private fun addItemToNote() {
     }
 }
 
-//TODO
+//
 
-//------------------------------------
-//NOTE REPORTS MENU
-//------------------------------------
+// ------------------------------------
+// NOTE REPORTS MENU
+// ------------------------------------
 fun searchNotes() {
     val searchTitle = readNextLine("Enter the description to search by: ")
     val searchResults = noteAPI.searchNotesByTitle(searchTitle)
@@ -208,13 +208,12 @@ fun updateItemContentsInNote() {
 }
 
 private fun askUserToChooseItem(note: Note): Item? {
-    if (note.numberOfItems() > 0) {
+    return if (note.numberOfItems() > 0) {
         print(note.listItems())
-        return note.findOne(readNextInt("\nEnter the id of the item: "))
-    }
-    else{
-        println ("No items for chosen note")
-        return null
+        note.findOne(readNextInt("\nEnter the id of the item: "))
+    } else {
+        println("No items for chosen note")
+        null
     }
 }
 
@@ -238,15 +237,14 @@ fun markItemStatus() {
     if (note != null) {
         val item: Item? = askUserToChooseItem(note)
         if (item != null) {
-            var changeStatus = 'X'
+            val changeStatus: Char
             if (item.isItemComplete) {
                 changeStatus = readNextChar("The item is currently complete...do you want to mark it as TODO?")
-                if ((changeStatus == 'Y') ||  (changeStatus == 'y'))
+                if ((changeStatus == 'Y') || (changeStatus == 'y'))
                     item.isItemComplete = false
-            }
-            else {
+            } else {
                 changeStatus = readNextChar("The item is currently TODO...do you want to mark it as Complete?")
-                if ((changeStatus == 'Y') ||  (changeStatus == 'y'))
+                if ((changeStatus == 'Y') || (changeStatus == 'y'))
                     item.isItemComplete = true
             }
         }
@@ -263,31 +261,30 @@ fun searchItems() {
     }
 }
 
-fun listToDoItems(){
+fun listToDoItems() {
     if (noteAPI.numberOfToDoItems() > 0) {
         println("Total TODO items: ${noteAPI.numberOfToDoItems()}")
     }
     println(noteAPI.listTodoItems())
 }
 
+// ------------------------------------
+// ITEM REPORTS MENU
+// ------------------------------------
 
-//------------------------------------
-//ITEM REPORTS MENU
-//------------------------------------
+//
 
-//TODO
-
-//------------------------------------
+// ------------------------------------
 // Exit App
-//------------------------------------
+// ------------------------------------
 fun exitApp() {
     println("Exiting...bye")
     exitProcess(0)
 }
 
-//------------------------------------
-//HELPER FUNCTIONS
-//------------------------------------
+// ------------------------------------
+// HELPER FUNCTIONS
+// ------------------------------------
 
 private fun askUserToChooseActiveNote(): Note? {
     listActiveNotes()
@@ -297,11 +294,11 @@ private fun askUserToChooseActiveNote(): Note? {
             if (note.isNoteArchived) {
                 println("Note is NOT Active, it is Archived")
             } else {
-                return note //chosen note is active
+                return note // chosen note is active
             }
         } else {
             println("Note id is not valid")
         }
     }
-    return null //selected note is not active
+    return null // selected note is not active
 }

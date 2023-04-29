@@ -17,10 +17,8 @@ object Utilities {
         return sb.toString().trim()
     }
 
-
     @JvmStatic
     fun formatSetString(itemsToFormat: Set<Item>): String =
         itemsToFormat
-            .joinToString(separator = "\n") { item ->  "\t$item" }
-
+            .joinToString(separator = "\n") { item -> "\t$item" }
 }
