@@ -2,8 +2,8 @@ package persistence
 
 import com.thoughtworks.xstream.XStream
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver
-import models.Note
 import models.Item
+import models.Note
 import java.io.File
 import java.io.FileReader
 import java.io.FileWriter

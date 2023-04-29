@@ -10,7 +10,7 @@ import java.io.File
 import kotlin.system.exitProcess
 
 /**Uncomment and Comment to alternate between the two*/
-//private val noteAPI = NoteAPI(XMLSerializer(File("notes.xml")))
+// private val noteAPI = NoteAPI(XMLSerializer(File("notes.xml")))
 private val noteAPI = NoteAPI(JSONSerializer(File("notes.json")))
 fun main() = runMenu()
 

@@ -1,12 +1,11 @@
 package controllers
 
 import models.Note
+import persistence.Serializer
 import utils.Utilities.formatListString
 import java.util.ArrayList
-import persistence.Serializer
-import kotlin.jvm.Throws
 
-class NoteAPI (serializerType: Serializer) {
+class NoteAPI(serializerType: Serializer) {
     private var serializer: Serializer = serializerType
     private var notes = ArrayList<Note>()
 
@@ -99,10 +98,9 @@ class NoteAPI (serializerType: Serializer) {
             }
             listOfTodoItems
         }
-
-    // ----------------------------------------------
-    //  COUNTING METHODS FOR ITEMS
-    // ----------------------------------------------
+// ----------------------------------------------
+//  COUNTING METHODS FOR ITEMS
+// ----------------------------------------------
     fun numberOfToDoItems(): Int {
         var numberOfToDoItems = 0
         for (note in notes) {
@@ -133,10 +131,15 @@ class NoteAPI (serializerType: Serializer) {
 
     @Throws(Exception::class)
     fun load() {
-        notes = serializer.read() as ArrayList<Note>
+        val loadedNotes = serializer.read()
+        if (loadedNotes is ArrayList<*>) {
+            notes = loadedNotes.filterIsInstance<Note>() as ArrayList<Note>
+        } else {
+            throw Exception("Unable to load the notes and items")
+        }
     }
 
-    @Throws(java.lang.Exception::class)
+    @Throws(Exception::class)
     fun store() {
         serializer.write(notes)
     }

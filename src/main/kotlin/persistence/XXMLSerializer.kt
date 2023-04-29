@@ -1,5 +1,6 @@
-package persistence
 
+package persistence
+/*
 import java.io.File
 import kotlin.Throws
 import com.thoughtworks.xstream.XStream
@@ -29,4 +30,4 @@ class XMLSerializer(private val file: File) : Serializer {
         outputStream.writeObject(obj)
         outputStream.close()
     }
-}
+}*/
