@@ -3,9 +3,11 @@ package controllers
 import models.Note
 import utils.Utilities.formatListString
 import java.util.ArrayList
+import persistence.Serializer
+import kotlin.jvm.Throws
 
-class NoteAPI {
-
+class NoteAPI (serializerType: Serializer) {
+    private var serializer: Serializer = serializerType
     private var notes = ArrayList<Note>()
 
     // ----------------------------------------------
@@ -127,5 +129,15 @@ class NoteAPI {
             if (listOfNotes == "") "No items found for: $searchString"
             else listOfNotes
         }
+    }
+
+    @Throws(Exception::class)
+    fun load() {
+        notes = serializer.read() as ArrayList<Note>
+    }
+
+    @Throws(java.lang.Exception::class)
+    fun store() {
+        serializer.write(notes)
     }
 }

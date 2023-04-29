@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33a67b78-e98c-4377-bca4-b044f25162af" name="Changes" comment="Add basic setup for skeleton">
+    <list default="true" id="33a67b78-e98c-4377-bca4-b044f25162af" name="Changes" comment="Add extra setup for skeleton such as linting">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/persistence/JSONSerializer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/persistence/Serializer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/persistence/XXMLSerializer.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/controllers/NoteAPI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/controllers/NoteAPI.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/models/Item.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/models/Item.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/models/Note.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/models/Note.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/utils/ScannerInput.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/utils/ScannerInput.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/utils/Utilities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/utils/Utilities.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/UtilitiesTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/UtilitiesTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +62,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Class" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -97,27 +94,6 @@
   }
 }]]></component>
   <component name="RunManager" selected="Gradle.fixed-notes-with-items [test]">
-    <configuration name="Tests in 'fixed-notes-with-items.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="UtilitiesTest.testFormatListString" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -204,13 +180,20 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainKt" />
+      <module name="fixed-notes-with-items.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.fixed-notes-with-items [test]" />
+        <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Gradle.UtilitiesTest.testFormatListString" />
         <item itemvalue="Gradle.fixed-notes-with-items [ktlintFormat]" />
         <item itemvalue="Gradle.fixed-notes-with-items [jacocoTestReport]" />
-        <item itemvalue="Gradle.Tests in 'fixed-notes-with-items.test'" />
       </list>
     </recent_temporary>
   </component>
@@ -237,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682695503148</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add extra setup for skeleton such as linting">
+      <created>1682731839229</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1682731839229</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -254,7 +244,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Add basic setup for skeleton" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add basic setup for skeleton" />
+    <MESSAGE value="Add extra setup for skeleton such as linting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add extra setup for skeleton such as linting" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/fixed_notes_with_items$Tests_in__fixed_notes_with_items_test_.ic" NAME="Tests in 'fixed-notes-with-items.test' Coverage Results" MODIFIED="1682702408815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

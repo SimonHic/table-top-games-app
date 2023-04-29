@@ -1,13 +1,17 @@
 import controllers.NoteAPI
 import models.Item
 import models.Note
+import persistence.JSONSerializer
+// import persistence.XMLSerializer
 import utils.ScannerInput.readNextChar
 import utils.ScannerInput.readNextInt
 import utils.ScannerInput.readNextLine
+import java.io.File
 import kotlin.system.exitProcess
 
-private val noteAPI = NoteAPI()
-
+/**Uncomment and Comment to alternate between the two*/
+//private val noteAPI = NoteAPI(XMLSerializer(File("notes.xml")))
+private val noteAPI = NoteAPI(JSONSerializer(File("notes.json")))
 fun main() = runMenu()
 
 fun runMenu() {
@@ -25,6 +29,8 @@ fun runMenu() {
             10 -> searchNotes()
             15 -> searchItems()
             16 -> listToDoItems()
+            19 -> save()
+            20 -> load()
             0 -> exitApp()
             else -> println("Invalid menu choice: $option")
         }
@@ -258,6 +264,25 @@ fun searchItems() {
         println("No items found")
     } else {
         println(searchResults)
+    }
+}
+
+// ------------------------------------
+// Persistence
+// ------------------------------------
+fun save() {
+    try {
+        noteAPI.store()
+    } catch (e: Exception) {
+        System.err.println("Error writing to file: $e")
+    }
+}
+
+fun load() {
+    try {
+        noteAPI.load()
+    } catch (e: Exception) {
+        System.err.println("Error reading from file: $e")
     }
 }
 
