@@ -24,3 +24,14 @@ To get started with the table-top-games App, run the files in an enviroment such
 From there you can run the main.kt file and start navigating the menu from there.
 
 _psst_ if you're still confused with the menu you can check out the [Wiki.](https://github.com/SimonHic/table-top-games-app/wiki) 
+
+---
+
+## Help
+
+If you are stuck with the Table-Top-Games App reach out to the author: SimonHic.
+
+---
+
+## Authors / Contributors
+    SimonHic
