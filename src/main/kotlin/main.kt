@@ -77,32 +77,26 @@ fun mainMenu(): Int {
          > |@|white,bold              Table-Top-Games App|@                   |
          > @|cyan ------------------------------------------------------|@  
          > | Game MENU                                         |
-         > @|green | 1) Add a game $plusSign                                |@   |
-         > @|green | 2) List games $listSymbol                                |@   |
-         > @|yellow |  3) Update a game $pencil                            |@   |
-         > @|yellow |  4) Delete a game $trashCan                          |@   |
-         > @|green | 5) Save a game for later $floppyDisk                     |@   |
+         > @|green | 1) Add a game $plusSign                                |@  |
+         > @|green | 2) List games $listSymbol                                |@  |
+         > @|yellow |  3) Update a game $pencil                            |@  |
+         > @|yellow |  4) Delete a game $trashCan                          |@    |
+         > @|green | 5) Save a game for later $floppyDisk                     |@  |
          > @|cyan -----------------------------------------------------|@  
          > | Play MENU                                         | 
-         > @|green | 6) Add play to a game $plusSign                        |@   |
-         > @|yellow | 7) Update play contents on a game $pencil            |@   |
-         > @|yellow | 8) Delete play from a game $trashCan               |@     |
-         > @|blue | 9) Mark play as played/to-be played $pencil          |@   | 
+         > @|green | 6) Add play to a game $plusSign                        |@  |
+         > @|yellow | 7) Update play contents on a game $pencil            |@  |
+         > @|yellow | 8) Delete play from a game $trashCan               |@      |
+         > @|blue | 9) Mark play as played/to-be played $pencil          |@  | 
          > @|cyan -----------------------------------------------------|@  
          > | REPORT MENU FOR GAMES                             | 
-         > @|blue |   10) Search for games $magnifyingGlass (by game name)        |@   |
-         > |   11) .....                                       |
-         > |   12) .....                                       |
-         > |   13) .....                                       |
-         > |   14) .....                                       |
+         > @|blue |   10) Search for games $magnifyingGlass (by game name)        |@  |
          > @|green -----------------------------------------------------|@  
          > | REPORT MENU FOR PLAYS                             |                                
-         > @|blue |   15) Search for plays $magnifyingGlass (by play description)  |@  |
-         > @|blue |   16) List TO-BE played Plays $listSymbol                 |@  |
-         > |   17) .....                                       |
-         > |   18) .....                                       |
+         > @|blue |   15) Search for plays $magnifyingGlass (by play description)  |@ |
+         > @|blue |   16) List TO-BE played Plays $listSymbol                 |@ |
          > @|cyan -----------------------------------------------------|@ 
-         > @|magenta |   19) Save $floppyDisk                                   |@   |
+         > @|magenta |   19) Save $floppyDisk                                  |@   |
          > @|magenta |   20) Load                                      |@  |
          > @|cyan -----------------------------------------------------|@  
          > @|red |  0) Exit                                        |@  |
