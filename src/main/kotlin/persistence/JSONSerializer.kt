@@ -9,8 +9,8 @@ package persistence
 
 import com.thoughtworks.xstream.XStream
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver
-import models.Play
 import models.Game
+import models.Play
 import java.io.File
 import java.io.FileReader
 import java.io.FileWriter

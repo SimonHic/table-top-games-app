@@ -31,7 +31,7 @@ dependencies {
     // For generating a Dokka Site from KDoc
     implementation("org.jetbrains.dokka:dokka-gradle-plugin:1.6.10")
 
-    //Color for the UX
+    // Color for the UX
     implementation("org.fusesource.jansi:jansi:2.4.0")
 }
 

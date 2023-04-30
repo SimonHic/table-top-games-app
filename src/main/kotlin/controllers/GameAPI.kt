@@ -119,7 +119,7 @@ class GameAPI(serializerType: Serializer) {
      *
      * @return all the saved for later Games in a String format. Or an error message stating how "No games were found as saved for later"
      */
-    fun listSavedForLaterGames () =
+    fun listSavedForLaterGames() =
         if (amountOfSavedForLaterGames() == 0) "No games were found as saved for later"
         else formatListString(games.filter { game -> game.isGameSavedForLater })
 
