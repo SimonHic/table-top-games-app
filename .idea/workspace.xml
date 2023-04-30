@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33a67b78-e98c-4377-bca4-b044f25162af" name="Changes" comment="Add official table-top-games code, change workflow, and modify save and loading">
+    <list default="true" id="33a67b78-e98c-4377-bca4-b044f25162af" name="Changes" comment="Add UX elements to menu. Add color using jansi dependency and emojis using unicode.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/controllers/GameAPI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/controllers/GameAPI.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/persistence/JSONSerializer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/persistence/JSONSerializer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/persistence/Serializer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/persistence/Serializer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/persistence/XXMLSerializer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/persistence/XXMLSerializer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/utils/Utilities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/utils/Utilities.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,7 +245,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682796700425</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add UX elements to menu. Add color using jansi dependency and emojis using unicode.">
+      <created>1682803577152</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1682803577152</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -265,7 +276,8 @@
     <MESSAGE value="Add to menu and json. Add Final foundation code" />
     <MESSAGE value="Add to menu and json. Add Final foundation code 2" />
     <MESSAGE value="Add official table-top-games code, change workflow, and modify save and loading" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add official table-top-games code, change workflow, and modify save and loading" />
+    <MESSAGE value="Add UX elements to menu. Add color using jansi dependency and emojis using unicode." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add UX elements to menu. Add color using jansi dependency and emojis using unicode." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/fixed_notes_with_items$Tests_in__fixed_notes_with_items_test_.ic" NAME="Tests in 'fixed-notes-with-items.test' Coverage Results" MODIFIED="1682702408815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
