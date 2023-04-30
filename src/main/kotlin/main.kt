@@ -152,8 +152,8 @@ fun listGames() {
         val option = readNextInt(
             """
                   > -----------------------------------
-                  > |   1) View ALL games              |
-                  > |   2) View RUNNING games          |
+                  > |   1) View ALL games                 |
+                  > |   2) View RUNNING games             |
                   > |   3) View SAVED $floppyDisk FOR LATER games  |
                   > --------------------------------
          > ==>> """.trimMargin(">")

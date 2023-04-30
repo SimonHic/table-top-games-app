@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33a67b78-e98c-4377-bca4-b044f25162af" name="Changes" comment="Add potential fix to workflow">
+    <list default="true" id="33a67b78-e98c-4377-bca4-b044f25162af" name="Changes" comment="Add fix to messed up menu">
+      <change beforePath="$PROJECT_DIR$/games.json" beforeDir="false" afterPath="$PROJECT_DIR$/games.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -272,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682823106097</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Add fix to messed up menu">
+      <created>1682833746497</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1682833746497</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -300,7 +308,8 @@
     <MESSAGE value="Add KDoc to all classes" />
     <MESSAGE value="Add Reports such as jacoco, and Dokka. Add Linting fix" />
     <MESSAGE value="Add potential fix to workflow" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add potential fix to workflow" />
+    <MESSAGE value="Add fix to messed up menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add fix to messed up menu" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/fixed_notes_with_items$Tests_in__fixed_notes_with_items_test_.ic" NAME="Tests in 'fixed-notes-with-items.test' Coverage Results" MODIFIED="1682702408815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
