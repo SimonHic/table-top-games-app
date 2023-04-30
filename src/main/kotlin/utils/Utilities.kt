@@ -3,8 +3,8 @@
  */
 package utils
 
-import models.Play
 import models.Game
+import models.Play
 
 object Utilities {
 

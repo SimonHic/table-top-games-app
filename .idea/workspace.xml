@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33a67b78-e98c-4377-bca4-b044f25162af" name="Changes" comment="Add UX elements to menu. Add color using jansi dependency and emojis using unicode.">
+    <list default="true" id="33a67b78-e98c-4377-bca4-b044f25162af" name="Changes" comment="Add KDoc to all classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/controllers/GameAPI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/controllers/GameAPI.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/persistence/JSONSerializer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/persistence/JSONSerializer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/persistence/Serializer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/persistence/Serializer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/persistence/XXMLSerializer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/persistence/XXMLSerializer.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/utils/Utilities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/utils/Utilities.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,18 +45,6 @@
                 <item name="fixed-notes-with-items" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="fixed-notes-with-items" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="formatting" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="fixed-notes-with-items" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="verification" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -105,19 +92,19 @@
     "last_opened_file_path": "C:/Users/hicsi/Downloads/notes-app-with-items-skeleton-code-master"
   }
 }]]></component>
-  <component name="RunManager" selected="Kotlin.MainKt">
-    <configuration name="fixed-notes-with-items [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="JAR Application.fixed-notes-with-items-1.0.jar">
+    <configuration name="fixed-notes-with-items [dokkaJavadoc]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--scan" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="build" />
+            <option value="dokkaJavadoc" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -148,28 +135,59 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="fixed-notes-with-items-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/build/libs/fixed-notes-with-items-1.0-SNAPSHOT.jar" />
+    <configuration name="fixed-notes-with-items [ktlintFormat]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="ktlintFormat" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="fixed-notes-with-items [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <configuration name="fixed-notes-with-items-1.0.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/build/libs/fixed-notes-with-items-1.0.jar" />
       <method v="2" />
     </configuration>
-    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MainKt" />
-      <module name="fixed-notes-with-items.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="JAR Application.fixed-notes-with-items-1.0.jar" />
-        <item itemvalue="Gradle.fixed-notes-with-items [build]" />
-        <item itemvalue="JAR Application.fixed-notes-with-items-1.0-SNAPSHOT.jar" />
         <item itemvalue="Gradle.fixed-notes-with-items [jar]" />
+        <item itemvalue="Gradle.fixed-notes-with-items [ktlintFormat]" />
+        <item itemvalue="Gradle.fixed-notes-with-items [test]" />
+        <item itemvalue="Gradle.fixed-notes-with-items [dokkaJavadoc]" />
       </list>
     </recent_temporary>
   </component>
@@ -252,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682803577152</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Add KDoc to all classes">
+      <created>1682818441196</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682818441196</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -277,7 +302,8 @@
     <MESSAGE value="Add to menu and json. Add Final foundation code 2" />
     <MESSAGE value="Add official table-top-games code, change workflow, and modify save and loading" />
     <MESSAGE value="Add UX elements to menu. Add color using jansi dependency and emojis using unicode." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add UX elements to menu. Add color using jansi dependency and emojis using unicode." />
+    <MESSAGE value="Add KDoc to all classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add KDoc to all classes" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/fixed_notes_with_items$Tests_in__fixed_notes_with_items_test_.ic" NAME="Tests in 'fixed-notes-with-items.test' Coverage Results" MODIFIED="1682702408815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

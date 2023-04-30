@@ -15,17 +15,17 @@
  * @version:  V1.0
  *
  */
-import controllers.GameAPI
-import models.Play
-import models.Game
-import persistence.JSONSerializer
 // import persistence.XMLSerializer
+import controllers.GameAPI
+import models.Game
+import models.Play
+import org.fusesource.jansi.Ansi.ansi
+import persistence.JSONSerializer
 import utils.ScannerInput.readNextChar
 import utils.ScannerInput.readNextInt
 import utils.ScannerInput.readNextLine
 import java.io.File
 import kotlin.system.exitProcess
-import org.fusesource.jansi.Ansi.ansi
 
 /**Uncomment and Comment to alternate between the two*/
 // private val gameAPI = GameAPI(XMLSerializer(File("games.xml")))
@@ -72,43 +72,44 @@ fun runMenu() {
 fun mainMenu(): Int {
     return readNextInt(
         ansi().render(
-    """ 
+            """ 
          > @|cyan ------------------------------------------------------|@  
          > |@|white,bold              Table-Top-Games App|@                   |
          > @|cyan ------------------------------------------------------|@  
          > | Game MENU                                         |
-         > @|green | 1) Add a game $plusSign                                |@  |
-         > @|green | 2) List games $listSymbol                                |@  |
-         > @|yellow |  3) Update a game $pencil                            |@  |
-         > @|yellow |  4) Delete a game $trashCan                            |@  |
-         > @|green | 5) Save a game for later $floppyDisk                     |@  |
+         > @|green | 1) Add a game $plusSign                                |@   |
+         > @|green | 2) List games $listSymbol                                |@   |
+         > @|yellow |  3) Update a game $pencil                            |@   |
+         > @|yellow |  4) Delete a game $trashCan                          |@   |
+         > @|green | 5) Save a game for later $floppyDisk                     |@   |
          > @|cyan -----------------------------------------------------|@  
          > | Play MENU                                         | 
-         > @|green | 6) Add play to a game $plusSign                        |@  |
-         > @|yellow | 7) Update play contents on a game $pencil            |@  |
-         > @|yellow | 8) Delete play from a game $trashCan                   |@  |
-         > @|blue | 9) Mark play as played/to-be played $pencil          |@  | 
+         > @|green | 6) Add play to a game $plusSign                        |@   |
+         > @|yellow | 7) Update play contents on a game $pencil            |@   |
+         > @|yellow | 8) Delete play from a game $trashCan               |@     |
+         > @|blue | 9) Mark play as played/to-be played $pencil          |@   | 
          > @|cyan -----------------------------------------------------|@  
          > | REPORT MENU FOR GAMES                             | 
-         > @|blue |   10) Search for games $magnifyingGlass (by game name)       |@   |
+         > @|blue |   10) Search for games $magnifyingGlass (by game name)        |@   |
          > |   11) .....                                       |
          > |   12) .....                                       |
          > |   13) .....                                       |
          > |   14) .....                                       |
          > @|green -----------------------------------------------------|@  
          > | REPORT MENU FOR PLAYS                             |                                
-         > @|blue |   15) Search for plays $magnifyingGlass (by play description)  |@ |
-         > @|blue |   16) List TO-BE played Plays $listSymbol                 |@ |
+         > @|blue |   15) Search for plays $magnifyingGlass (by play description)  |@  |
+         > @|blue |   16) List TO-BE played Plays $listSymbol                 |@  |
          > |   17) .....                                       |
          > |   18) .....                                       |
          > @|cyan -----------------------------------------------------|@ 
-         > @|magenta |   19) Save $floppyDisk                                   |@  |
+         > @|magenta |   19) Save $floppyDisk                                   |@   |
          > @|magenta |   20) Load                                      |@  |
          > @|cyan -----------------------------------------------------|@  
          > @|red |  0) Exit                                        |@  |
          > @|cyan -----------------------------------------------------|@  
-         > ==>> """.trimMargin(">")).toString()
-)
+         > ==>> """.trimMargin(">")
+        ).toString()
+    )
 }
 
 // ------------------------------------
